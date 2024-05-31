@@ -1,0 +1,11 @@
+<mat-toolbar>
+  <h1 class="title">Order History</h1>
+</mat-toolbar>
+
+<app-order-filter (filterChange)="applyFilter($event)"></app-order-filter>
+
+<app-order-table *ngIf="dataSource.filteredData.length; else noResults" [dataSource]="dataSource"></app-order-table>
+
+<ng-template #noResults>
+  <app-nothing-to-display></app-nothing-to-display>
+</ng-template>

@@ -1,0 +1,36 @@
+<div class="filter-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Status</mat-label>
+    <mat-select multiple [(value)]="selectedStatuses" (selectionChange)="applyFilter()">
+      <mat-option value="Pending">Pending</mat-option>
+      <mat-option value="In Progress">In Progress</mat-option>
+      <mat-option value="Completed">Completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Product Line</mat-label>
+    <mat-select [(value)]="selectedProductLine" (selectionChange)="applyFilter()">
+      <mat-option value="">All Product Lines</mat-option>
+      <mat-option value="Ready-Mix">Ready-Mix</mat-option>
+      <mat-option value="Cement">Cement</mat-option>
+      <mat-option value="Aggregates">Aggregates</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <input matInput [matDatepicker]="pickerFrom" placeholder="From" [(ngModel)]="dateFrom" (dateChange)="applyFilter()">
+    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+    <mat-datepicker #pickerFrom></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <input matInput [matDatepicker]="pickerTo" placeholder="To" [(ngModel)]="dateTo" (dateChange)="applyFilter()">
+    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+    <mat-datepicker #pickerTo></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Search" matTooltip="Search by Number Id or Product" [(ngModel)]="searchTerm" (input)="applyFilter()">
+  </mat-form-field>
+</div>
