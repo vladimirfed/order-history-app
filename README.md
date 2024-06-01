@@ -10,4 +10,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 3. Run `npm run dev` to start the application
 4. Open the application in your browser by navigating to `http://localhost:4200/`
 
-### Or open the application through Stackblitz https://stackblitz.com/~/github.com/vladimirfed/order-history-app
+### Cloned repo on Stackblitz https://stackblitz.com/~/github.com/vladimirfed/order-history-app
