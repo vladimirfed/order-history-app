@@ -15,7 +15,7 @@ export class FiltersService {
 
       return this.checkStatus(data.status, searchTerms.statuses) &&
              this.checkProductLine(data.productLine, searchTerms.productLine) &&
-             this.checkDate(dateRequested, searchTerms.dateFrom, searchTerms.dateTo) &&
+             this.checkDate(dateRequested, new Date(searchTerms.dateFrom), new Date(searchTerms.dateTo)) &&
              this.checkSearchTerm(data, searchTerms.searchTerm);
     };
     return filterFunction;
@@ -30,8 +30,14 @@ export class FiltersService {
   }
   
   private checkDate(dateRequested: Date, dateFrom: Date | null, dateTo: Date | null): boolean {
-    return (!dateFrom || dateRequested >= dateFrom) && (!dateTo || dateRequested <= dateTo);
-  }
+    const getDateWithoutTime = (date: Date): Date => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+    const requestedDate = getDateWithoutTime(dateRequested);
+    const fromDate = dateFrom && getDateWithoutTime(dateFrom);
+    const toDate = dateTo && getDateWithoutTime(dateTo);
+
+    return (!fromDate || requestedDate! >= fromDate) && (!toDate || requestedDate! <= toDate);
+}
   
   private checkSearchTerm(order: Order, searchTerm: string): boolean {
     const lowerCaseSearchTerm = searchTerm.trim().toLowerCase();
